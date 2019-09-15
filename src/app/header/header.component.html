@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-sm navbar-color text-white">
+    <div class="container">
+        <a class="navbar-brand text-white" href="#">OfficeSpace</a>
+        <div class="navbar-nav mr-auto">
+            <a class="nav-link nav-item active" routerLink="/home">Search Employees</a>
+            <a class="nav-link" [routerLink]="['/employees','Islamabad']">Employees List</a>
+            <a class="nav-link" [routerLink]="['/saveEmployee','save']">Create Employee </a>
+            <a class="nav-link" href="javascript:void(0)">About</a>
+            <a class="nav-link" href="javascript:void(0)">Contact</a>
+
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Select your
+                    branch</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"  [routerLink]='["employees","Islamabad"]' >Islamabad</a>
+                    <a class="dropdown-item"  [routerLink]='["employees","Lahore"]' >Lahore</a>
+                    <a class="dropdown-item"  [routerLink]='["employees","Karachi"]'>Karachi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

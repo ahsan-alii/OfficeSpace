@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<div class='row'>
+    <div class='col-md-3'>
+        <form style="margin: 2em;" #form="ngForm">
+            <div class="form-group row">
+                <label class="col-sm-4">First Name: </label>
+                <input type='text' id="first_name" class='form-control col-sm-8' required placeholder="First Name"
+                    [(ngModel)]="empObj.first_name" name="first_name" #firstName="ngModel">
+                <div class='alert alert-danger row' *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                    <div *ngIf="firstName.errors.required">
+                        First name is required
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-4">Last Name: </label>
+                <input type='text' #lastName="ngModel" class='form-control col-sm-8' required placeholder="Last Name"
+                    [(ngModel)]="empObj.last_name" name="last_name">
+
+                <div *ngIf='lastName.invalid && lastName.touched' class='alert alert-danger'>
+                    <div *ngIf='lastName.errors.required'>
+                        Last name is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row ">
+                <label class="col-sm-4">Title </label>
+                <input type='text' #title="ngModel" class='form-control col-sm-8' required placeholder="Legal Advisor"
+                    [(ngModel)]="empObj.title" name="title">
+                <div *ngIf='title.touched && title.invalid' class='alert alert-danger'>
+                    <div *ngIf='title.errors.required'>
+                        Title is required
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4">Email: </label>
+                <input type='email' #email="ngModel" class='form-control col-sm-8' required placeholder="abc@xyz.com"
+                    [(ngModel)]="empObj.email" name="email" email=true>
+                <div *ngIf='email.invalid && email.touched' class='alert alert-danger'>
+                    <div *ngIf='email.errors.required'>
+                        Email is required
+                    </div>
+                    <div *ngIf='email.invalid'>
+                        Email is not valid
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4">Gender: </label>&nbsp;
+                <div class="form-group col-sm-2"><input #gender="ngModel" type='radio' value='Male' name='gender'
+                        [(ngModel)]="empObj.gender" required name="gender">Male</div>
+                <div class="form-group col-sm-2"><input #gender="ngModel" type='radio' value='Female' name='gender'
+                        [(ngModel)]="empObj.gender" required name="gender">Female</div>
+                <div *ngIf='gender.invalid && gender.touched'>
+                    <div *ngIf='gender.errors.required' class='alert alert-danger'>
+                        Gender is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4">Location: </label>
+                <input type='text' #location="ngModel" class='form-control col-sm-8' required
+                    placeholder="Your office location" [(ngModel)]="empObj.location" name="location">
+                <div *ngIf='location.invalid && location.touched' class='alert alert-danger'>
+                    <div   *ngIf='location.errors.required'>
+                        <div class='row col-sm-4'></div>
+                        Location is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4">Department: </label>
+                <input type='text' #department="ngModel" class='form-control col-sm-8' required
+                    placeholder="Your department name" [(ngModel)]="empObj.department" name="department">
+                <div *ngIf='department.invalid && department.touched' class='alert alert-danger'>
+                    <div *ngIf='department.errors.required'>
+                        Department is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4">Contact No.: </label>
+                <input type="text" class='form-control col-sm-8' required placeholder="+1234567890123"
+                    [(ngModel)]="empObj.phone" name="phone" #contact='ngModel'>
+                <div *ngIf='contact.invalid && contact.touched' class='alert alert-danger'>
+                    <div *ngIf='contact.errors.required'>
+                        Contact number is required
+                    </div>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-4'>Position X</label>
+                <input type='text' readonly class='form-control col-sm-8' [(ngModel)]='empObj.positionX' name='positionX'>
+            </div>
+            <div class='form-group row'>
+                <label class='col-sm-4'>Position Y</label>
+                <input type='text' readonly class='form-control col-sm-8' [(ngModel)]='empObj.positionY' name='positionY'>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4">Select your branch</label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle='dropdown' type="button">
+                        Branch
+                    </button>
+                    <div class="dropdown-menu" required>
+                        <a (click)="empObj.branch='Islamabad'" class="dropdown-item">Islamabad</a>
+                        <a (click)="empObj.branch='Karachi'" class="dropdown-item">Karachi</a>
+                        <a (click)="empObj.branch='Lahore'" class="dropdown-item" active>Lahore</a>
+                        <a (click)="empObj.branch='Other'" class="dropdown-item">Other</a>
+                    </div>
+                </div>
+                <div class="col-sm-4"><label class="btn btn-warning" *ngIf="empObj.branch">{{empObj.branch}}</label>
+                </div>
+            </div>
+            <div *ngIf='newEmployee==true' class="form-group row">
+                <label class="col-sm-4"></label>
+
+                <button type="submit" class="btn btn-primary col-sm-8" (click)="addEmployee()"
+                    [disabled]='form.invalid'>Create a new
+                    Employee</button>
+            </div>
+            <div *ngIf='newEmployee==false' class="form-group row">
+                <label class="col-sm-4"></label>
+
+                <button type="submit" class="btn btn-primary col-sm-8" (click)="modifyEmployee()">Update
+                    Employee</button>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4"></label>
+
+                <button class="btn btn-warning btn-sm darkBlue col-md-8"><a (click)="goBack()"><b>Back to Employee
+                            list</b></a></button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-7" style="margin-top: 2em;">
+        <h5 class='txt-center'>Click the floor to set the position of employee</h5>
+        <canvas (click)="drawMarker($event)" id='myCanvas' style="border: 1px solid #d3d3d3">
+        </canvas>
+        <!-- <img class='img-fluid' width="950px" height="620px" src="/assets/images/floorplan.jpg"> -->
+    </div>
+</div>

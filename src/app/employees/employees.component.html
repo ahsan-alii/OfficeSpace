@@ -1,0 +1,110 @@
+<div class="container">
+    <h3>Employees Directory</h3>
+    <div class='row' style="margin-bottom: 10px; margin-left: 5px;">
+        <button class="btn  btn-sm btn-outline-danger" (click)="Hide()">Hide Emails</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-sm btn-outline-success" (click)="Show()">Show Email</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-outline-secondary" (click)="listView()">List View (All Employees)</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-outline-primary" (click)="cardView()">Card View</button>
+        &nbsp;&nbsp;&nbsp;
+        <p *ngIf='showTable'>Search for Employees: </p>
+        <input *ngIf='showTable' [(ngModel)]='inputValue' (keyup)='filter()' type='text' class='form-control'
+            style="width:200px; margin-left: 10px">
+    </div>
+    <h5 *ngIf='!showTable'>Branch: {{selectedbranch}}</h5>
+    <div *ngIf="showList">
+        <div *ngFor='let user of ReceivedData; let i=index;'>
+            <p>Email of user {{i+1}} is: {{user.email}}</p>
+        </div>
+    </div>
+    <div class="row" *ngIf='!showTable'>
+        <div *ngFor="let user of ReceivedData; let i=index;">
+            <div class="card" *ngIf="user.branch==selectedbranch"
+                style="min-height: 350px; width:300px; margin-top:2px; margin-right:20px; overflow-y:hidden; overflow-x: hidden">
+                <div class='row'>
+                    <div class='col-sm-8'>
+                        <img class="card-img-top" style="width:120px;" src="/assets/images/avatar.png"
+                            alt='Employee Image'>
+                    </div>
+                    <div class='col'>
+                        <i class="fa fa-pencil-square-o" [routerLink]="['/saveEmployee', user._id]"
+                            style="font-size: 25px; color:orange"></i>
+                        <i class="fa fa-remove" (click)="idToDelete=user._id" data-toggle="modal"
+                            data-target="#exampleModal" style="font-size: 25px; padding:10px; color:red"></i>
+                        <!-- (click)="deleteEmployee(user._id)" -->
+                        <!-- data-toggle="modal" -->
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>First Name: <b>{{user.first_name}}</b></div>
+                    <div>Last Name: {{user.last_name}}</div>
+                    <div>Title: {{user.title}}</div>
+                    <!-- <div>Gender: {{user.gender}}</div> -->
+                    <div>Department: {{user.department}}</div>
+                    <div>Email: {{user.email}}</div>
+                    <div>Location: {{user.location}}</div>
+                    <div>Branch: {{user.branch}}</div>
+                    <!-- <div (click)="deleteEmployee(user._id)">
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                    <div [routerLink]="['/saveEmployee', user._id]">
+                        <button class="btn btn-warning">Update</button>
+                    </div> -->
+                    <div [routerLink]="['/employeeDetail', user._id]" style='float:right'>
+                        <button class="btn btn-success btn-sm">Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='showTable'>
+        <table class='table'>
+            <thead class='thead'>
+                <tr>
+                    <!-- <td><b>Sr No.</b></td> -->
+                    <th><b>First Name</b></th>
+                    <th><b>Last Name</b></th>
+                    <th><b>Title</b></th>
+                    <th><b>Location</b></th>
+                    <th><b>Branch</b></th>
+                </tr>
+            </thead>
+            <tr id='data' *ngFor='let i=index let user of ReceivedData  | paginate: config; '>
+                <!-- <td>{{(i+1)*config.currentPage}}</td> -->
+                <td>{{user.first_name}}</td>
+                <td>{{user.last_name}}</td>
+                <td>{{user.title}}</td>
+                <td>{{user.location}}</td>
+                <td>{{user.branch}}</td>
+            </tr>
+        </table>
+        <p><b>Showing {{((config.itemsPerPage*config.currentPage)+1)-20}}-{{config.itemsPerPage*config.currentPage}}
+                items
+                of {{config.totalItems}}</b></p>
+        <!-- <p><b>Showing {{config.currentPage}} of {{config.totalItems / config.itemsPerPage}} page</b></p> -->
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+    <div class="modal fade" id='exampleModal' tabindex="-1" role='dialog'>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to delete this employee ?
+                    <b> process cannot be undone !</b>
+                </div>
+                <div class="modal-footer">
+                    <button type='button' (click)='deleteEmployee()' class="btn btn-danger"
+                        data-dismiss="modal">Delete</button>
+                    <button type='button' class="btn btn-success" data-dismiss="modal">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

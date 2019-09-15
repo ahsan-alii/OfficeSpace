@@ -1,0 +1,38 @@
+<div class="container">
+    <h4 class="darkBlue">Search Employee </h4>
+    <input [(ngModel)]="searchFor" type="text" class='form-control' style="width:200px">
+
+    <p>Search using &nbsp;
+        <input type="radio" name='search' value="First Name" [(ngModel)]='searchUsing'> First Name
+        <input type="radio" name='search' value="Last Name" [(ngModel)]='searchUsing'> Last Name
+        <input type="radio" name='search' value="Location" [(ngModel)]='searchUsing'> Location
+        <input type="radio" name='search' value="Department" [(ngModel)]='searchUsing'> Department
+        <input type="radio" name='search' value="Title" [(ngModel)]='searchUsing'>Title
+        <br />
+        <button class="btn btn-success btn-sm" (click)='searchEmployee()'>Search</button>
+    </p>
+    <div *ngIf='showList==true'>
+        Found the following employees against the provided parameters
+    </div>
+    <div>
+        <table class='table table-striped'>
+            <thead>
+                <tr>
+                    <td><b>Sr No.</b></td>
+                    <td><b>Name</b></td>
+                    <td><b>Department</b></td>
+                    <td *ngIf='searchUsing=="Title"'><b>Title</b></td>
+                    <td><b>Link to Details</b></td>
+                </tr>
+            </thead>
+            <tr *ngFor='let Employee of Employees; let i=index'>
+                <td>{{i+1}}</td>
+                <td>{{Employee.first_name}} {{Employee.last_name}}</td>
+                <td>{{Employee.department}}</td>
+                <td *ngIf='searchUsing=="Title"'>{{Employee.title}}</td>
+
+                <td><a [routerLink]='["/employeeDetail",Employee._id]'>Details</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

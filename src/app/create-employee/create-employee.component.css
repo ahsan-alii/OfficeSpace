@@ -1,0 +1,7 @@
+.alert.alert-danger{
+    padding:.40rem .40rem;
+    margin-left: 5px;
+}
+::placeholder{
+    opacity: 0.5;
+}
