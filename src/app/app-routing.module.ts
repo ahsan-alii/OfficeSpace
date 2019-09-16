@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: '', redirectTo: 'employees/Islamabad', pathMatch:'full' },
   { path: 'employees/:branch', component: EmployeesComponent },
   { path: 'home', component: HomeComponent },
- // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'employeeDetail/:id', component: EmployeeDetailComponent },
   { path: 'saveEmployee/:id', component: CreateEmployeeComponent }
 ];
