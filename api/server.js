@@ -3,8 +3,8 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     mongoose = require('mongoose'),
-    //DB = 'mongodb://localhost:27017/OfficeSpace'
-    DB = 'mongodb+srv://omersjd:omersjdp@officespace-szwno.mongodb.net/OfficeSpace?retryWrites=true&w=majority'
+    DB = 'mongodb://localhost:27017/OfficeSpace'
+    //DB = 'mongodb+srv://omersjd:omersjdp@officespace-szwno.mongodb.net/OfficeSpace?retryWrites=true&w=majority'
     
 
 
