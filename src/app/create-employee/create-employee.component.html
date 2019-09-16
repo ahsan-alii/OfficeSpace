@@ -124,8 +124,8 @@
             </div>
             <div *ngIf='newEmployee==true' class="form-group row">
                 <label class="col-sm-4"></label>
-
-                <button type="submit" class="btn btn-primary col-sm-8" (click)="addEmployee()"
+                <!-- (click)="addEmployee()" -->
+                <button type="submit" class="btn btn-primary col-sm-8" 
                     [disabled]='form.invalid'>Create a new
                     Employee</button>
             </div>
