@@ -3,7 +3,10 @@ import { DataService } from '../data.service';
 import { Routes, ActivatedRoute } from '@angular/router'
 import { Employee } from '../employee';
 import { Location } from '@angular/common';
-
+// import {PNotify} from 'pnotify/dist/es/PNotify';
+// import {PNotifyButtons} from 'pnotify/dist/es/PNotifyButtons';
+import PNotify from 'pnotify/dist/es/PNotify';
+import PNotifyButtons from 'pnotify/dist/es/PNotifyButtons';
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
@@ -34,14 +37,17 @@ export class CreateEmployeeComponent implements OnInit {
   employee: Employee
   constructor(private dataService: DataService, private route: ActivatedRoute, private location: Location) {
   }
-
   addEmployee() {
     this.dataService.addEmployee(this.empObj);
     console.log('Details of employee are: ', this.empObj)
   }
   modifyEmployee() {
+    console.log('Employee going to be updated: ', this.empObj)
     this.dataService.updateEmployee(this.empObj).subscribe(() => {
+      this.Notify();
+      //this.myFunc();
       console.log('Employee Updated');
+      //alert('Updated')
     });
   }
 
@@ -54,23 +60,22 @@ export class CreateEmployeeComponent implements OnInit {
     // let _id = this.route.snapshot.params['id'];
     // if (_id == 'save') this.newEmployee = true;
 
-    this.route.params.subscribe(params=>{
-      console.log('dddddddddddddddddddddddd', params.id);
-      if(params.id == 'save'){
-        this.newEmployee=true;
+    this.route.params.subscribe(params => {
+      if (params.id == 'save') {      // Checking if the request to create a new Employee
+        this.newEmployee = true;
         this.resetAll();
       } else {
-        this.newEmployee=false;
-        this.employee = this.dataService.getEmployee(params.id).subscribe((person) => {
+        this.newEmployee = false;
+        this.employee = this.dataService.getEmployee(params.id).subscribe((person:any) => {
           this.employee = person;
           this.empObj = person;
-          this.drawMarker({layerX: this.empObj.positionX, layerY: this.empObj.positionY});
+          this.drawMarker({ layerX: this.empObj.positionX, layerY: this.empObj.positionY });
         });
       }
     });
   }
 
-  resetAll(){
+  resetAll() {
     this.drawMarker(null);
     this.empObj = {
       //_id: this._id,
@@ -92,12 +97,21 @@ export class CreateEmployeeComponent implements OnInit {
     this.location.back();
 
   }
+  myFunc(){
+    console.log('My function called')
+  }
+  Notify() {
+    PNotify.info({
+      title: 'Info',
+      text: 'Employee updated successfully'
+    });
+  }
   previousMarker: any = [];
   drawMarker(event) {
     console.log('Before setting the points on click X: ', this.empObj.positionX)
     console.log('Before setting the points on click Y: ', this.empObj.positionY)
 
-    if(event){
+    if (event) {
       this.x = event.layerX - 14//-510;
       this.y = event.layerY - 30//-115;
       var marker = new Image()
@@ -107,14 +121,15 @@ export class CreateEmployeeComponent implements OnInit {
     map.src = "/assets/images/floorplan.jpg";
 
     map.onload = () => {
-      this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.drawImage(map, 0, 0, 950, 620);
-      if(event){
-        this.ctx.drawImage(marker, this.x, this.y, 28, 30);
+      //if (event) {
         this.empObj.positionX = this.x;
         this.empObj.positionY = this.y;
-      }
+        this.ctx.drawImage(marker, this.x, this.y, 28, 30);
+        // this.empObj.positionX = this.x;
+        // this.empObj.positionY = this.y;
+      //}
     }
   }
-
 }

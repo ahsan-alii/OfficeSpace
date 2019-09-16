@@ -66,9 +66,12 @@ employeeRoute.route('/Employees/update').post(function (req, res) {
         email: employee.email,
         location: employee.location,
         phone: employee.phone,
-        branch: employee.branch
-    }, function (err, res) {
-        if (err) return res.send(err)
+        branch: employee.branch,
+        positionX:employee.positionX,
+        positionY:employee.positionY,
+    }, function (err) {
+        if (err) res.json(err);
+        else res.json('Employee Updated');
         console.log('Employee Updated');
     })
 })

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <div class='row'>
     <div class='col-md-3'>
         <form style="margin: 2em;" #form="ngForm">
@@ -124,8 +125,8 @@
             </div>
             <div *ngIf='newEmployee==true' class="form-group row">
                 <label class="col-sm-4"></label>
-                <!-- (click)="addEmployee()" -->
-                <button type="submit" class="btn btn-primary col-sm-8" 
+                
+                <button type="submit" (click)="addEmployee()" class="btn btn-primary col-sm-8" 
                     [disabled]='form.invalid'>Create a new
                     Employee</button>
             </div>
@@ -142,6 +143,7 @@
                             list</b></a></button>
             </div>
         </form>
+        
     </div>
     <div class="col-md-7" style="margin-top: 2em;">
         <h5 class='txt-center'>Click the floor to set the position of employee</h5>

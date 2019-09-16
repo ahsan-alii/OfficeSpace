@@ -17,6 +17,13 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    var canvas: any = document.getElementById("myCanvas");
+    canvas.width = 960;
+    canvas.height = 630;
+    var ctx = canvas.getContext('2d');
+    var marker = new Image()
+    marker.src = "/assets/images/marker4.png"
+
     let _id = this.route.snapshot.params['id'];
     this.Employee = this.dataService.getEmployee(_id)
       .subscribe((resp: any) => {
@@ -24,15 +31,11 @@ export class EmployeeDetailComponent implements OnInit {
         let person = resp;//.filter((emp: Employee) => { return emp._id == _id });
         this.Employee = person//[0]
 
-        var canvas: any = document.getElementById("myCanvas");
-        canvas.width = 960;
-        canvas.height = 630;
-        var ctx = canvas.getContext('2d');
+
 
         var map = new Image()
         map.src = "/assets/images/floorplan.jpg";
-        var marker = new Image()
-        marker.src = "/assets/images/marker4.png"
+
         //console.log('Canvas properties: ', canvas);
         map.onload = () => {
           console.log('X position:', this.Employee.positionX)
