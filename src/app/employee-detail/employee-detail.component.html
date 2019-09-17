@@ -46,6 +46,20 @@
             <div class="location">
                 <h5 class="darkBlue">Location</h5>
                 <p>{{Employee.location}}</p>
+                <hr>
+            </div>
+            <div class="row" style="margin-left:5px">
+                <div>
+                    <a href="https://www.google.com">
+                        <p> <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Previous</p>
+                    </a>
+                </div>
+
+                <div class="ml-auto" style="margin-right:20px">
+                    <a href="https://www.gsmarena.com">
+                        <p>Next <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></p>
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -53,9 +67,11 @@
             <div>
                 <h3 class="text-center darkBlue">Floor Plan</h3>
             </div>
-            <div class="">
+            <div class="" style="margin-bottom: 10px">
                 <button class="btn btn-warning btn-sm darkBlue"><a (click)="goBack()"><b>Back to
                             Employee list</b></a></button><br />
+            </div>
+            <div>
                 <canvas id='myCanvas' style="border: 1px solid #d3d3d3"></canvas>
                 <!-- <img class="img-fluid" src="/assets/images/floorplan.jpg"> -->
             </div>
