@@ -23,7 +23,7 @@ export class DataService {
     return this.http.get(`${this.uri}`)
   }
   getEmployee(_id: number): any {
-    console.log(this.http.post);
+    //console.log(this.http.post);
     return this.http.post(`${this.uri}/get`, { id: _id })
   }
   deleteEmployee(_id: number) {

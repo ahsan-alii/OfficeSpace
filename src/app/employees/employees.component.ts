@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Employee } from '../employee';
-import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -25,6 +25,10 @@ export class EmployeesComponent implements OnInit {
   constructor(private data: DataService, private route: ActivatedRoute, private router: Router) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
+
+        console.log("Router is: ", this.router)
+        console.log('Event of Navigation End');
+        console.log('Params of this route: ', this.route.snapshot.params);
         let branch = this.route.snapshot.params['branch'];
         this.selectedbranch = branch
         console.log('branch: ', this.selectedbranch)
