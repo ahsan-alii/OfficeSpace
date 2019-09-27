@@ -18,7 +18,7 @@ export class DataService {
     alert('Done adding data');
   }
 
-  getEmployees(): Observable<Object> {
+  getEmployees(){
 
     return this.http.get(`${this.uri}`)
   }
@@ -35,5 +35,8 @@ export class DataService {
   }
   searchEmployee(searchFor: string, searchUsing: string) {
     return this.http.post(`${this.uri}/search`, { searchFor: searchFor, searchUsing: searchUsing })
+  }
+  getEmployeeIds(){
+    return this.http.get(`${this.uri}/ids`)
   }
 }

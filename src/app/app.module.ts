@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     EmployeeDetailComponent,
     CreateEmployeeComponent,
     UpdateEmployeeComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

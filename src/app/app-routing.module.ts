@@ -7,14 +7,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'employees/Islamabad', pathMatch:'full' },
+  { path: '', redirectTo: 'employees/Islamabad', pathMatch: 'full' },
   { path: 'employees/:branch', component: EmployeesComponent },
   { path: 'home', component: HomeComponent },
   { path: 'employeeDetail/:id', component: EmployeeDetailComponent },
-  { path: 'saveEmployee/:id', component: CreateEmployeeComponent }
+  { path: 'saveEmployee/:id', component: CreateEmployeeComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

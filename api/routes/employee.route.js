@@ -27,7 +27,7 @@ employeeRoute.route('/Employees/get').post(function (req, res) {
     //console.log('Single getEmployee function called');
     Employees.findOne({ _id: req.body.id }, function (err, result) {
         if (err) {
-            console.log('Caught an error', err);
+            console.log('Caught an error Custom: ', err);
             return res.status(404).json({ 'Error': 'Caught an error' });
         }
         else {
@@ -48,10 +48,27 @@ employeeRoute.get('/Employees/', function (req, res) {
         else {
             employees = results;
             res.json(employees);
-            //      console.log('Employees Fetched');
+            console.log('Employees Fetched');
         }
     })
 })
+
+
+///////////////////////////Get the Ids of employees for iteration/////////////
+
+employeeRoute.route('/Employees/ids').get( function (request, response) {
+    console.log('function called')
+    //db.Employees.find({},{_id:1})
+    Employees.find({}, { _id: 1 }, function (error, result) {
+        if (error)
+            console.log(error)
+        else {
+            //console.log('Ids of employees: ', result)
+            response.send(result)
+        }
+    })
+})
+
 /////////////////UPDATE EMPLOYEE/////////////////
 employeeRoute.route('/Employees/update').post(function (req, res) {
     console.log('Entered in Update function');
@@ -82,76 +99,76 @@ employeeRoute.route('/Employees/search').post(function (req, res) {
     let employees;
     if (req.body.searchUsing == 'First Name') {
         console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-       
-        Employees.find({ first_name: { $regex: req.body.searchFor, $options: "i" } }, (err, result)=>{
 
-        // Employees.find({ first_name: req.body.searchFor }, (err, result) => {
-        if (err)
-            console.log(err);
-        else {
-            employees = result;
-            if (employees.length == 0)
-                console.log('No Employees found agains the given name');
-            console.log('Found following: ', employees)
-            res.send(employees);
-        }
-    })
+        Employees.find({ first_name: { $regex: req.body.searchFor, $options: "i" } }, (err, result) => {
+
+            // Employees.find({ first_name: req.body.searchFor }, (err, result) => {
+            if (err)
+                console.log(err);
+            else {
+                employees = result;
+                if (employees.length == 0)
+                    console.log('No Employees found agains the given name');
+                console.log('Found following: ', employees)
+                res.send(employees);
+            }
+        })
     }
-if (req.body.searchUsing == 'Last Name') {
-    console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-    Employees.find({ last_name: req.body.searchFor }, function (err, result) {
-        if (err)
-            console.log(err);
-        else {
-            employees = result;
-            if (employees.length == 0)
-                console.log('No Employees found agains the given name');
-            console.log('Found following: ', employees)
-            res.send(employees);
-        }
-    })
-}
-if (req.body.searchUsing == 'Location') {
-    console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-    Employees.find({ location: req.body.searchFor }, (err, result) => {
-        if (err)
-            console.log(err);
-        else {
-            employees = result;
-            if (employees.length == 0)
-                console.log('No Employees found agains the given name');
-            console.log('Found following: ', employees)
-            res.send(employees);
-        }
-    })
-}
-if (req.body.searchUsing == 'Department') {
-    console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-    Employees.find({ department: req.body.searchFor }, function (err, result) {
-        if (err)
-            console.log(err);
-        else {
-            employees = result;
-            if (employees.length == 0)
-                console.log('No Employees found agains the given name');
-            console.log('Found following: ', employees)
-            res.send(employees);
-        }
-    })
-}
-if (req.body.searchUsing == 'Title') {
-    console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-    Employees.find({ title: req.body.searchFor }, function (err, result) {
-        if (err)
-            console.log(err);
-        else {
-            employees = result;
-            if (employees.length == 0)
-                console.log('No Employees found agains the given name');
-            console.log('Found following: ', employees)
-            res.send(employees);
-        }
-    })
-}
+    if (req.body.searchUsing == 'Last Name') {
+        console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
+        Employees.find({ last_name: req.body.searchFor }, function (err, result) {
+            if (err)
+                console.log(err);
+            else {
+                employees = result;
+                if (employees.length == 0)
+                    console.log('No Employees found agains the given name');
+                console.log('Found following: ', employees)
+                res.send(employees);
+            }
+        })
+    }
+    if (req.body.searchUsing == 'Location') {
+        console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
+        Employees.find({ location: req.body.searchFor }, (err, result) => {
+            if (err)
+                console.log(err);
+            else {
+                employees = result;
+                if (employees.length == 0)
+                    console.log('No Employees found agains the given name');
+                console.log('Found following: ', employees)
+                res.send(employees);
+            }
+        })
+    }
+    if (req.body.searchUsing == 'Department') {
+        console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
+        Employees.find({ department: req.body.searchFor }, function (err, result) {
+            if (err)
+                console.log(err);
+            else {
+                employees = result;
+                if (employees.length == 0)
+                    console.log('No Employees found agains the given name');
+                console.log('Found following: ', employees)
+                res.send(employees);
+            }
+        })
+    }
+    if (req.body.searchUsing == 'Title') {
+        console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
+        Employees.find({ title: req.body.searchFor }, function (err, result) {
+            if (err)
+                console.log(err);
+            else {
+                employees = result;
+                if (employees.length == 0)
+                    console.log('No Employees found agains the given name');
+                console.log('Found following: ', employees)
+                res.send(employees);
+            }
+        })
+    }
 })
 module.exports = employeeRoute

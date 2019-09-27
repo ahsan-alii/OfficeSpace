@@ -1,14 +1,16 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3 EmployeeProfile">
+        <div *ngIf="Employee" class="col-md-3 EmployeeProfile">
             <div class="text-center">
                 <img style="width:85px; border-radius: 50%; border:2px solid; border-color: #2F3658"
                     src="/assets/images/avatar.png">
 
             </div>
-            <h2 class="darkBlue text-center" style="font-size: 15px">
-                <b>{{Employee.first_name}}&nbsp;{{Employee.last_name}}</b>
-            </h2>
+            <div>
+                <h2 class="darkBlue text-center" style="font-size: 15px">
+                    <b>{{Employee.first_name}}&nbsp;{{Employee.last_name}}</b>
+                </h2>
+            </div>
             <div class="">
                 <img style="border-radius:50%; width:40px;" src="/assets/images/Phone.png">
                 <a href="javascript:void(0)">{{Employee.phone}}</a><br />
@@ -63,6 +65,12 @@
             </div>
 
         </div>
+        <div *ngIf='ErrorOccured'>
+            <img style="margin-top: 50px" class='rounded mx-auto d-block' src='../../assets/images/NotFound.jpg'
+                alt='Page Not Found'>
+            <h2 class='text-center' style="color:crimson; font-weight: bold">Error 404, Page not found</h2>
+
+        </div>
         <div class="col-md-9">
             <div>
                 <h3 class="text-center darkBlue">Floor Plan</h3>
@@ -71,10 +79,11 @@
                 <button class="btn btn-warning btn-sm darkBlue"><a [routerLink]="['/employees', 'Islamabad']"><b>Back to
                             Employee list</b></a></button><br />
             </div>
-            <div>
+            <div >
                 <canvas id='myCanvas' style="border: 1px solid #d3d3d3"></canvas>
                 <!-- <img class="img-fluid" src="/assets/images/floorplan.jpg"> -->
             </div>
         </div>
     </div>
+
 </div>
