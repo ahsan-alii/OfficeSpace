@@ -8,9 +8,11 @@ import { HomeComponent } from './home/home.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './login/login/login.component';
 
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'employees/Islamabad', pathMatch: 'full' },
   { path: 'employees/:branch', component: EmployeesComponent },
   { path: 'home', component: HomeComponent },

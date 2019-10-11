@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
   searchEmployee() {
     // alert('You are searching for: ' + this.searchFor + ' using ' + this.searchUsing)
     this.dataService.searchEmployee(this.searchFor, this.searchUsing)

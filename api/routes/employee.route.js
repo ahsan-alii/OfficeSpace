@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require('moment')
 const app = express();
 const employeeRoute = express.Router();
 
@@ -48,7 +49,8 @@ employeeRoute.get('/Employees/', function (req, res) {
         else {
             employees = results;
             res.json(employees);
-            console.log('Employees Fetched');
+            date = new Date()
+            console.log('Employees Fetched: ', moment().format('LTS'));
         }
     })
 })
@@ -56,12 +58,12 @@ employeeRoute.get('/Employees/', function (req, res) {
 
 ///////////////////////////Get the Ids of employees for iteration/////////////
 
-employeeRoute.route('/Employees/ids').get( function (request, response) {
+employeeRoute.route('/Employees/ids').get(function (request, response) {
     console.log('function called')
     //db.Employees.find({},{_id:1})
     Employees.find({}, { _id: 1 }, function (error, result) {
         if (error)
-            console.log(error)
+            console.log('Error getting the ids of employees: ', error)
         else {
             //console.log('Ids of employees: ', result)
             response.send(result)
@@ -90,6 +92,31 @@ employeeRoute.route('/Employees/update').post(function (req, res) {
         if (err) res.json(err);
         else res.json('Employee Updated');
         console.log('Employee Updated');
+    })
+})
+
+// Checking the login
+employeeRoute.route('/login').post((req, res) => {
+    let userData = req.body
+    console.log('User going to logged in: ',userData.email)
+    Employees.findOne({ first_name: userData.email }, (error, user) => {
+        if (error) {
+            return res.status(401).send('Unauthorized Accessss')
+        }
+        else {
+            if (!user)
+                return res.status(401).send('Invalid Email')
+            else {
+                if (userData.password !== user.gender)
+                    return res.status(401).send('Invalid password');
+                else {
+                    console.log('User credential matched')
+                    return res.status(200).send(true);
+                    
+                }
+            }
+        }
+
     })
 })
 /////////////////SEARCHING FOR EMPLOYEE/////////////////

@@ -12,6 +12,7 @@ import { CreateEmployeeComponent } from './create-employee/create-employee.compo
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {LoginModule} from './login/login.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    LoginModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
