@@ -5,7 +5,7 @@
             <a class="nav-link nav-item active" routerLink="/home">Search Employees</a>
             <a class="nav-link" [routerLink]="['/employees','Islamabad']">Employees List</a>
             <a class="nav-link" [routerLink]="['/saveEmployee','save']">Create Employee </a>
-            <a class="nav-link" href="javascript:void(0)">About</a>
+            <a class="nav-link" routerLink="/about">About</a>
             <a class="nav-link" href="javascript:void(0)">Contact</a>
 
             <div class="dropdown">
@@ -19,7 +19,7 @@
             </div>
             <a class="nav-link" routerLink='/login' *ngIf='!authService.isLoggedIn'>Log In</a>
             <a class="nav-link" (click)='logOut()' routerLink='/login' *ngIf='authService.isLoggedIn' >Log Out</a>
-            <a class="nav-link">Register</a>
+            <a class="nav-link" *ngIf='!authService.isLoggedIn' routerLink='/register'>Register</a>
         </div>
     </div>
 </nav>

@@ -18,7 +18,7 @@ export class DataService {
     alert('Done adding data');
   }
 
-  getEmployees(){
+  getEmployees() {
 
     return this.http.get(`${this.uri}`)
   }
@@ -36,7 +36,8 @@ export class DataService {
   searchEmployee(searchFor: string, searchUsing: string) {
     return this.http.post(`${this.uri}/search`, { searchFor: searchFor, searchUsing: searchUsing })
   }
-  getEmployeeIds(){
+  getEmployeeIds() {
     return this.http.get(`${this.uri}/ids`)
   }
+
 }

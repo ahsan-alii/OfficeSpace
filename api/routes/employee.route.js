@@ -1,9 +1,69 @@
 const express = require('express');
 const moment = require('moment')
 const app = express();
-const employeeRoute = express.Router();
-
+const employeeRoute = express.Router()
+const Users = require('../models/User');
 let Employees = require('../models/Employee');
+
+employeeRoute.post('/register', (request, response) => {
+    let user = new Users(request.body);
+    console.log('going to register the follwing user: ', request.body);
+    user.save(() => {
+        response.status(200).json('Employee saved successfully ')
+    })
+
+})
+
+
+// Checking the login
+employeeRoute.route('/login').post((request, response) => {
+    console.log('Request body contains: ',request.body)
+    let user = request.body
+    console.log('User going to logged in: ', user.username)
+    Users.findOne({ username: user.username }, (error, result) => {
+        if (error) {
+            return response.status(401).send('Unauthorized Access')
+        }
+        else {
+            if (!result)
+                return response.status(401).send('Invalid Username')
+            else {
+                if (user.password !== result.password)
+                    return response.status(401).send('Invalid password');
+                else {
+                    console.log('User credential matched')
+                    return response.status(200).send(true);
+
+                }
+            }
+        }
+
+    })
+})
+
+// employeeRoute.route('/login').post((req, res) => {
+//     let userData = req.body
+//     console.log('User going to logged in: ', userData.email)
+//     Employees.findOne({ first_name: userData.email }, (error, user) => {
+//         if (error) {
+//             return res.status(401).send('Unauthorized Accessss')
+//         }
+//         else {
+//             if (!user)
+//                 return res.status(401).send('Invalid Email')
+//             else {
+//                 if (userData.password !== user.gender)
+//                     return res.status(401).send('Invalid password');
+//                 else {
+//                     console.log('User credential matched')
+//                     return res.status(200).send(true);
+
+//                 }
+//             }
+//         }
+
+//     })
+// })
 
 /////////////////ADDING EMPLOYEE//////////////////
 
@@ -56,6 +116,7 @@ employeeRoute.get('/Employees/', function (req, res) {
 })
 
 
+
 ///////////////////////////Get the Ids of employees for iteration/////////////
 
 employeeRoute.route('/Employees/ids').get(function (request, response) {
@@ -95,30 +156,6 @@ employeeRoute.route('/Employees/update').post(function (req, res) {
     })
 })
 
-// Checking the login
-employeeRoute.route('/login').post((req, res) => {
-    let userData = req.body
-    console.log('User going to logged in: ',userData.email)
-    Employees.findOne({ first_name: userData.email }, (error, user) => {
-        if (error) {
-            return res.status(401).send('Unauthorized Accessss')
-        }
-        else {
-            if (!user)
-                return res.status(401).send('Invalid Email')
-            else {
-                if (userData.password !== user.gender)
-                    return res.status(401).send('Invalid password');
-                else {
-                    console.log('User credential matched')
-                    return res.status(200).send(true);
-                    
-                }
-            }
-        }
-
-    })
-})
 /////////////////SEARCHING FOR EMPLOYEE/////////////////
 employeeRoute.route('/Employees/search').post(function (req, res) {
     //console.log('Why flow is not coming here ?')

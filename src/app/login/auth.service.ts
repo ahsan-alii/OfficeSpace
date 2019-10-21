@@ -7,14 +7,18 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   isLoggedIn = false;
   result;
-  loginUrl = 'http://localhost:4000/login'
+  Url = 'http://localhost:4000'
   constructor(private http: HttpClient) { }
+
+  registerUser(user: any) {
+    return this.http.post(`${this.Url}/register`, user)
+  }
 
   loginUser(user) {
     console.log('User going to be logged in: ', user)
 
     // return this.http.post(`${this.loginUrl}`, user)
-    this.result = this.http.post(`${this.loginUrl}`, user)
+    this.result = this.http.post(`${this.Url}/login`, user)
 
     this.result.subscribe(resp => {
       console.log('Result of login service: ', resp)
@@ -32,5 +36,8 @@ export class AuthService {
     this.isLoggedIn = false;
   }
   checkLoggedIn() {
+    console.log(localStorage.getItem('isLoggedIn'))
+    return localStorage.getItem('isLoggedIn');
+
   }
 }

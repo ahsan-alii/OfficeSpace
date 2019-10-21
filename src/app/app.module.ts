@@ -13,6 +13,7 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {LoginModule} from './login/login.module';
+import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import {LoginModule} from './login/login.module';
     CreateEmployeeComponent,
     UpdateEmployeeComponent,
     NotFoundComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

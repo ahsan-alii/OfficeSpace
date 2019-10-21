@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   loginUser() {
-    PNotify.defaults.delay = 2000
+    PNotify.defaults.delay = 1000
       this.authService.loginUser(this.user).subscribe(response => {
         console.log('Response after trying to login: ', response)
 
