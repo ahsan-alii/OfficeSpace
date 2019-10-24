@@ -26,9 +26,9 @@ export class EmployeesComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
 
-        console.log("Router is: ", this.router)
-        console.log('Event of Navigation End');
-        console.log('Params of this route: ', this.route.snapshot.params);
+        // console.log("Router is: ", this.router)
+        // console.log('Event of Navigation End');
+        // console.log('Params of this route: ', this.route.snapshot.params);
         let branch = this.route.snapshot.params['branch'];
         this.selectedbranch = branch
         console.log('branch: ', this.selectedbranch)

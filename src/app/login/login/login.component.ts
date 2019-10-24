@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("Authservice is: ",this.authService)
   }
   loginUser() {
     PNotify.defaults.delay = 1000

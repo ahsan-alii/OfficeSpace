@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn = false;
+
+  isLoggedIn = this.checkLoggedIn();
   result;
   Url = 'http://localhost:4000'
   constructor(private http: HttpClient) { }
@@ -36,8 +37,14 @@ export class AuthService {
     this.isLoggedIn = false;
   }
   checkLoggedIn() {
-    console.log(localStorage.getItem('isLoggedIn'))
-    return localStorage.getItem('isLoggedIn');
-
+    if (localStorage.getItem('isLoggedIn') == 'true') {
+      console.log('Logged in is true')
+      this.isLoggedIn = true;
+      return true;
+    }
+    else {
+      console.log('logged in false');
+      return false;
+    }
   }
 }
