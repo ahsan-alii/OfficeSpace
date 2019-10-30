@@ -12,9 +12,9 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Select your
                     branch</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" [routerLink]='["employees","Islamabad"]'>Islamabad</a>
-                    <a class="dropdown-item" [routerLink]='["employees","Lahore"]'>Lahore</a>
-                    <a class="dropdown-item" [routerLink]='["employees","Karachi"]'>Karachi</a>
+                    <a class="dropdown-item" [routerLink]='["/employees","Islamabad"]'>Islamabad</a>
+                    <a class="dropdown-item" [routerLink]='["/employees","Lahore"]'>Lahore</a>
+                    <a class="dropdown-item" [routerLink]='["/employees","Karachi"]'>Karachi</a>
                 </div>
             </div>
             <a class="nav-link" routerLink='/login' *ngIf='!authService.isLoggedIn'>Log In</a>
@@ -23,3 +23,4 @@
         </div>
     </div>
 </nav>
+<router-outlet></router-outlet>

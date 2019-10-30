@@ -16,13 +16,18 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService
-  ) { }
+  ) { 
+    if(authService.isLoggedIn==true)
+    {
+      this.router.navigate(['/employees', 'Islamabad'])
+    }
+  }
 
   ngOnInit() {
     console.log("Authservice is: ",this.authService)
   }
   loginUser() {
-    PNotify.defaults.delay = 1000
+    PNotify.defaults.delay = 2000;
       this.authService.loginUser(this.user).subscribe(response => {
         console.log('Response after trying to login: ', response)
 

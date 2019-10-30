@@ -17,14 +17,13 @@ employeeRoute.post('/register', (request, response) => {
 
 // Checking the login
 employeeRoute.route('/login').post((request, response) => {
-    console.log('Request body contains: ',request.body)
+    console.log('Request body contains: ', request.body)
     let user = request.body
     console.log('User going to logged in: ', user.username)
     Users.findOne({ username: user.username }, (error, result) => {
         if (error) {
             return response.status(401).send('Unauthorized Access')
-        }
-        else {
+        } else {
             if (!result)
                 return response.status(401).send('Invalid Username')
             else {
@@ -67,46 +66,44 @@ employeeRoute.route('/login').post((request, response) => {
 
 /////////////////ADDING EMPLOYEE//////////////////
 
-employeeRoute.route('/Employees/').post(function (req, res) {
+employeeRoute.route('/Employees/').post(function(req, res) {
     let employee = new Employees(req.body);
     console.log('Data to save is: ', employee)
     employee.save().then(employee => { res.status(200).json({ 'employee': 'Employee added in successfully' }) })
 })
 
 /////////////////DELETING EMPLOYEE/////////////////
-employeeRoute.route('/Employees/del/').post(function (req, res) {
+employeeRoute.route('/Employees/del/').post(function(req, res) {
     console.log('Delete Function Called with id', req.body.id);
-    Employees.deleteOne({ _id: req.body.id }, function (err) {
+    Employees.deleteOne({ _id: req.body.id }, function(err) {
         console.log('Id against which employee is deleted: ', req.body.id);
         if (err) res.json(err);
         else res.json('Successfully removed');
     })
 });
 /////////////////GETTING A SINGLE EMPLOYEE/////////////////
-employeeRoute.route('/Employees/get').post(function (req, res) {
-    let employee = '';
-    //console.log('Single getEmployee function called');
-    Employees.findOne({ _id: req.body.id }, function (err, result) {
-        if (err) {
-            console.log('Caught an error Custom: ', err);
-            return res.status(404).json({ 'Error': 'Caught an error' });
-        }
-        else {
-            employee = result;
-            res.json(employee);
-            console.log('Employee sent');
-        }
+employeeRoute.route('/Employees/get').post(function(req, res) {
+        let employee = '';
+        //console.log('Single getEmployee function called');
+        Employees.findOne({ _id: req.body.id }, function(err, result) {
+            if (err) {
+                console.log('Caught an error Custom: ', err);
+                return res.status(404).json({ 'Error': 'Caught an error' });
+            } else {
+                employee = result;
+                res.json(employee);
+                console.log('Employee sent');
+            }
+        })
     })
-})
-/////////////////GETTING THE LIST OF ALL EMPLOYEES/////////////////
-employeeRoute.get('/Employees/', function (req, res) {
+    /////////////////GETTING THE LIST OF ALL EMPLOYEES/////////////////
+employeeRoute.get('/Employees/', function(req, res) {
     let employees = [];
-    Employees.find({}, function (err, results) {
+    Employees.find({}, function(err, results) {
 
         if (err) {
             console.log(err);
-        }
-        else {
+        } else {
             employees = results;
             res.json(employees);
             date = new Date()
@@ -119,10 +116,10 @@ employeeRoute.get('/Employees/', function (req, res) {
 
 ///////////////////////////Get the Ids of employees for iteration/////////////
 
-employeeRoute.route('/Employees/ids').get(function (request, response) {
+employeeRoute.route('/Employees/ids').get(function(request, response) {
     console.log('function called')
-    //db.Employees.find({},{_id:1})
-    Employees.find({}, { _id: 1 }, function (error, result) {
+        //db.Employees.find({},{_id:1})
+    Employees.find({}, { _id: 1 }, function(error, result) {
         if (error)
             console.log('Error getting the ids of employees: ', error)
         else {
@@ -133,7 +130,7 @@ employeeRoute.route('/Employees/ids').get(function (request, response) {
 })
 
 /////////////////UPDATE EMPLOYEE/////////////////
-employeeRoute.route('/Employees/update').post(function (req, res) {
+employeeRoute.route('/Employees/update').post(function(req, res) {
     console.log('Entered in Update function');
     let employee = req.body;
     console.log('Edited Employee before saving to db', employee);
@@ -149,7 +146,7 @@ employeeRoute.route('/Employees/update').post(function (req, res) {
         branch: employee.branch,
         positionX: employee.positionX,
         positionY: employee.positionY,
-    }, function (err) {
+    }, function(err) {
         if (err) res.json(err);
         else res.json('Employee Updated');
         console.log('Employee Updated');
@@ -157,7 +154,7 @@ employeeRoute.route('/Employees/update').post(function (req, res) {
 })
 
 /////////////////SEARCHING FOR EMPLOYEE/////////////////
-employeeRoute.route('/Employees/search').post(function (req, res) {
+employeeRoute.route('/Employees/search').post(function(req, res) {
     //console.log('Why flow is not coming here ?')
     //console.log("You searched for: ", req.body);
     let employees;
@@ -180,7 +177,7 @@ employeeRoute.route('/Employees/search').post(function (req, res) {
     }
     if (req.body.searchUsing == 'Last Name') {
         console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-        Employees.find({ last_name: req.body.searchFor }, function (err, result) {
+        Employees.find({ last_name: req.body.searchFor }, function(err, result) {
             if (err)
                 console.log(err);
             else {
@@ -208,7 +205,7 @@ employeeRoute.route('/Employees/search').post(function (req, res) {
     }
     if (req.body.searchUsing == 'Department') {
         console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-        Employees.find({ department: req.body.searchFor }, function (err, result) {
+        Employees.find({ department: req.body.searchFor }, function(err, result) {
             if (err)
                 console.log(err);
             else {
@@ -222,7 +219,7 @@ employeeRoute.route('/Employees/search').post(function (req, res) {
     }
     if (req.body.searchUsing == 'Title') {
         console.log('You searched for ' + req.body.searchFor + ' using ' + req.body.searchUsing);
-        Employees.find({ title: req.body.searchFor }, function (err, result) {
+        Employees.find({ title: req.body.searchFor }, function(err, result) {
             if (err)
                 console.log(err);
             else {

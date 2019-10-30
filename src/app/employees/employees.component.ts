@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Employee } from '../employee';
+import PNotify from 'pnotify/dist/es/PNotify';
 import { ActivatedRoute, Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
 
 @Component({
@@ -52,7 +53,12 @@ export class EmployeesComponent implements OnInit {
     //this.idToDelete = 32;
     this.data.deleteEmployee(this.idToDelete).subscribe(() => {
       console.log('Deleted')
-      alert('Deleted');
+      PNotify.defaults.delay = 1500
+      PNotify.success({
+        title: 'Successfully deleted',
+        // text: 'Redirecting to employees'
+      })
+      // alert('Deleted');
     });
 
   }

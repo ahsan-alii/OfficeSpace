@@ -1,0 +1,7 @@
+.bg {
+    background: #1f4037;
+    background: -webkit-linear-gradient(to left, #99f2c8, #1f4037);
+    background: linear-gradient(to left, #99f2c8, #1f4037);
+    padding: 50px;
+    height: 100vh;
+}

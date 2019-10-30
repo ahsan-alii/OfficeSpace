@@ -1,24 +1,37 @@
-<div style="margin-top: 60px;">
-    <div class="container">
-        <div class='row'>
-            <div class='col-md-6 mx-auto'>
-                <div class='card'>
+<div class="bg">
 
-                    <div class='card-header'>
-                        <h4 class='text-center'>Registration</h4>
-                    </div>
-                    <div class='card-body'>
-                        <form class='form'>
-                            <div class='form-group'>
-                                <label>Email:</label>
-                                <input class='form-control' name='email' [(ngModel)]='user.username' type='email'>
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input class='form-control' name='password' [(ngModel)]='user.password' type='password'>
-                            </div>
-                            <button type ='button' class='btn btn-success float-right'  (click)='registerUser()'>Register</button>
-                        </form>
+
+    <div style="margin-top: 60px;">
+        <div class="container">
+            <div class='row'>
+                <div class='col-md-6 mx-auto'>
+                    <div class='card'>
+
+                        <div class='card-header'>
+                            <h4 class='text-center'>Registration</h4>
+                        </div>
+                        <div class='card-body'>
+                            <form class='form'>
+                                <div class='form-group'>
+                                    <label>Email:</label>
+                                    <input class='form-control' name='email' [(ngModel)]='user.username' type='email'>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input class='form-control' name='password' [(ngModel)]='user.password' type='password'>
+                                </div>
+                                <div class="form-group">
+                                    <button type='button' class='btn btn-success float-right' (click)='registerUser()'>Register</button>
+                                </div>
+                                <div class="form-group">
+                                    <div class='text-center'>
+                                        <a>Already have an have account ? Log In</a><br />
+                                        <button type='button' class='btn btn-primary' [routerLink]='["/login"]'>Log In</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

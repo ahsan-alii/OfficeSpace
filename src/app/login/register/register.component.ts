@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import PNotify from 'pnotify/dist/es/PNotify';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,8 +11,17 @@ export class RegisterComponent implements OnInit {
 
 
   user = {}
-  constructor(private authService: AuthService) { 
+  constructor(private router: Router,
+    private authService: AuthService) {
+    if (authService.isLoggedIn == true) {
+      this.router.navigate(['/employees', 'Islamabad'])
+      PNotify.defaults.delay = 2000;
+      PNotify.error({
+        title: 'Already Logged In',
+        text: 'Log out to make a new registration'
 
+      })
+    }
   }
 
   ngOnInit() {

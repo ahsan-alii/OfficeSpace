@@ -16,16 +16,24 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HeaderComponent,
+    children: [
+      { path: '', redirectTo: 'employees/Islamabad', pathMatch: 'full' },
+      { path: 'employees/:branch',canActivate: [AuthGuard], component: EmployeesComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactUsComponent },
+      { path: 'employeeDetail/:id', component: EmployeeDetailComponent },
+      { path: 'saveEmployee/:id', canActivate: [AuthGuard], component: CreateEmployeeComponent },
+      
+      // { path: 'saveEmployee/:id', component: CreateEmployeeComponent },
+    ]
+
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', redirectTo: 'employees/Islamabad', pathMatch: 'full' },
-  { path: 'employees/:branch', component: EmployeesComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactUsComponent },
-  { path: 'employeeDetail/:id', component: EmployeeDetailComponent },
-  { path: 'saveEmployee/:id', canActivate: [AuthGuard], component: CreateEmployeeComponent },
-  // { path: 'saveEmployee/:id', component: CreateEmployeeComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
