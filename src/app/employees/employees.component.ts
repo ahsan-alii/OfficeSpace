@@ -67,7 +67,7 @@ export class EmployeesComponent implements OnInit {
     let inputValueUpperCased = this.inputValue.toUpperCase();
     console.log(this.inputValue);
     let data = document.getElementsByTagName('tr');
-    // console.log('Data is: ', data);
+     console.log('Data is: ', data);
     // console.log('length of data: ', data.length)
     // console.log('Data Text Content: ', data[2].textContent)
     for (let i = 1; i < data.length; i++) {

@@ -1,17 +1,12 @@
 <div class="container">
     <h3>Employees Directory</h3>
     <div class='row' style="margin-bottom: 10px; margin-left: 5px;">
-        <button class="btn  btn-sm btn-outline-danger" (click)="Hide()">Hide Emails</button>
-        &nbsp;&nbsp;&nbsp;
-        <button class="btn btn-sm btn-outline-success" (click)="Show()">Show Email</button>
-        &nbsp;&nbsp;&nbsp;
-        <button class="btn btn-outline-secondary" (click)="listView()">List View (All Employees)</button>
-        &nbsp;&nbsp;&nbsp;
-        <button class="btn btn-outline-primary" (click)="cardView()">Card View</button>
-        &nbsp;&nbsp;&nbsp;
+        <button class="btn  btn-sm btn-outline-danger" (click)="Hide()">Hide Emails</button> &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-sm btn-outline-success" (click)="Show()">Show Email</button> &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-outline-secondary" (click)="listView()">List View (All Employees)</button> &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-outline-primary" (click)="cardView()">Card View</button> &nbsp;&nbsp;&nbsp;
         <p *ngIf='showTable'>Search for Employees: </p>
-        <input *ngIf='showTable' [(ngModel)]='inputValue' (keyup)='filter()' type='text' class='form-control'
-            style="width:200px; margin-left: 10px">
+        <input *ngIf='showTable' [(ngModel)]='inputValue' (keyup)='filter()' type='text' class='form-control' style="width:200px; margin-left: 10px">
     </div>
     <h5 *ngIf='!showTable'>Branch: {{selectedbranch}}</h5>
     <div *ngIf="showList">
@@ -21,18 +16,14 @@
     </div>
     <div class="row" *ngIf='!showTable'>
         <div *ngFor="let user of ReceivedData; let i=index;">
-            <div class="card" *ngIf="user.branch==selectedbranch"
-                style="min-height: 350px; width:300px; margin-top:2px; margin-right:20px; overflow-y:hidden; overflow-x: hidden">
+            <div class="card" *ngIf="user.branch==selectedbranch" style="min-height: 350px; width:300px; margin-top:2px; margin-right:20px; overflow-y:hidden; overflow-x: hidden">
                 <div class='row'>
                     <div class='col-sm-8'>
-                        <img class="card-img-top" style="width:120px;" src="/assets/images/avatar.png"
-                            alt='Employee Image'>
+                        <img class="card-img-top" style="width:120px;" src="/assets/images/avatar.png" alt='Employee Image'>
                     </div>
                     <div class='col'>
-                        <i class="fa fa-pencil-square-o" [routerLink]="['/saveEmployee', user._id]"
-                            style="font-size: 25px; color:orange"></i>
-                        <i class="fa fa-remove" (click)="idToDelete=user._id" data-toggle="modal"
-                            data-target="#exampleModal" style="font-size: 25px; padding:10px; color:red"></i>
+                        <i class="fa fa-pencil-square-o" [routerLink]="['/saveEmployee', user._id]" style="font-size: 25px; color:orange"></i>
+                        <i class="fa fa-remove" (click)="idToDelete=user._id" data-toggle="modal" data-target="#exampleModal" style="font-size: 25px; padding:10px; color:red"></i>
                         <!-- (click)="deleteEmployee(user._id)" -->
                         <!-- data-toggle="modal" -->
                     </div>
@@ -100,8 +91,7 @@
                     <b> process cannot be undone !</b>
                 </div>
                 <div class="modal-footer">
-                    <button type='button' (click)='deleteEmployee()' class="btn btn-danger"
-                        data-dismiss="modal">Delete</button>
+                    <button type='button' (click)='deleteEmployee()' class="btn btn-danger" data-dismiss="modal">Delete</button>
                     <button type='button' class="btn btn-success" data-dismiss="modal">Back</button>
                 </div>
             </div>

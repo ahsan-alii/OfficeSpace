@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 
 <div class='row'>
-    <div class='col-md-3 col-sm-3 col-xs-3'>
+    <div class='col-md-3 col-xs-12'>
         <form style="margin: 2em;" #form="ngForm">
             <div class="form-group row">
                 <label class="col-sm-4">First Name: </label>
-                <input type='text' id="first_name" class='form-control col-sm-8' required placeholder="First Name"
-                    [(ngModel)]="empObj.first_name" name="first_name" #firstName="ngModel">
+                <input type='text' id="first_name" class='form-control col-sm-8' required placeholder="First Name" [(ngModel)]="empObj.first_name" name="first_name" #firstName="ngModel">
                 <div class='alert alert-danger row' *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
                     <div *ngIf="firstName.errors.required">
                         First name is required
@@ -17,8 +16,7 @@
 
             <div class="form-group row">
                 <label class="col-sm-4 col-md-4">Last Name: </label>
-                <input type='text' #lastName="ngModel" class='form-control col-sm-8' required placeholder="Last Name"
-                    [(ngModel)]="empObj.last_name" name="last_name">
+                <input type='text' #lastName="ngModel" class='form-control col-sm-8' required placeholder="Last Name" [(ngModel)]="empObj.last_name" name="last_name">
 
                 <div *ngIf='lastName.invalid && lastName.touched' class='alert alert-danger'>
                     <div *ngIf='lastName.errors.required'>
@@ -28,8 +26,7 @@
             </div>
             <div class="form-group row ">
                 <label class="col-sm-4">Title </label>
-                <input type='text' #title="ngModel" class='form-control col-sm-8' required placeholder="Legal Advisor"
-                    [(ngModel)]="empObj.title" name="title">
+                <input type='text' #title="ngModel" class='form-control col-sm-8' required placeholder="Legal Advisor" [(ngModel)]="empObj.title" name="title">
                 <div *ngIf='title.touched && title.invalid' class='alert alert-danger'>
                     <div *ngIf='title.errors.required'>
                         Title is required
@@ -40,8 +37,7 @@
 
             <div class="form-group row">
                 <label class="col-sm-4">Email: </label>
-                <input type='email' #email="ngModel" class='form-control col-sm-8' required placeholder="abc@xyz.com"
-                    [(ngModel)]="empObj.email" name="email" email=true>
+                <input type='email' #email="ngModel" class='form-control col-sm-8' required placeholder="abc@xyz.com" [(ngModel)]="empObj.email" name="email" email=true>
                 <div *ngIf='email.invalid && email.touched' class='alert alert-danger'>
                     <div *ngIf='email.errors.required'>
                         Email is required
@@ -54,10 +50,8 @@
 
             <div class="form-group row">
                 <label class="col-sm-4">Gender: </label>&nbsp;
-                <div class="form-group col-sm-2"><input #gender="ngModel" type='radio' value='Male' name='gender'
-                        [(ngModel)]="empObj.gender" required name="gender">Male</div>
-                <div class="form-group col-sm-2"><input #gender="ngModel" type='radio' value='Female' name='gender'
-                        [(ngModel)]="empObj.gender" required name="gender">Female</div>
+                <div class="form-group col-sm-2"><input #gender="ngModel" type='radio' value='Male' name='gender' [(ngModel)]="empObj.gender" required name="gender">Male</div>
+                <div class="form-group col-sm-2"><input #gender="ngModel" type='radio' value='Female' name='gender' [(ngModel)]="empObj.gender" required name="gender">Female</div>
                 <div *ngIf='gender.invalid && gender.touched'>
                     <div *ngIf='gender.errors.required' class='alert alert-danger'>
                         Gender is required
@@ -67,10 +61,9 @@
 
             <div class="form-group row">
                 <label class="col-sm-4">Location: </label>
-                <input type='text' #location="ngModel" class='form-control col-sm-8' required
-                    placeholder="Your office location" [(ngModel)]="empObj.location" name="location">
+                <input type='text' #location="ngModel" class='form-control col-sm-8' required placeholder="Your office location" [(ngModel)]="empObj.location" name="location">
                 <div *ngIf='location.invalid && location.touched' class='alert alert-danger'>
-                    <div   *ngIf='location.errors.required'>
+                    <div *ngIf='location.errors.required'>
                         <div class='row col-sm-4'></div>
                         Location is required
                     </div>
@@ -78,8 +71,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-md-4">Department: </label>
-                <input type='text' #department="ngModel" class='form-control col-sm-8' required
-                    placeholder="Your department name" [(ngModel)]="empObj.department" name="department">
+                <input type='text' #department="ngModel" class='form-control col-sm-8' required placeholder="Your department name" [(ngModel)]="empObj.department" name="department">
                 <div *ngIf='department.invalid && department.touched' class='alert alert-danger'>
                     <div *ngIf='department.errors.required'>
                         Department is required
@@ -89,8 +81,7 @@
 
             <div class="form-group row">
                 <label class="col-sm-4">Contact No.: </label>
-                <input type="text" class='form-control col-sm-8' required placeholder="+1234567890123"
-                    [(ngModel)]="empObj.phone" name="phone" #contact='ngModel'>
+                <input type="text" class='form-control col-sm-8' required placeholder="+1234567890123" [(ngModel)]="empObj.phone" name="phone" #contact='ngModel'>
                 <div *ngIf='contact.invalid && contact.touched' class='alert alert-danger'>
                     <div *ngIf='contact.errors.required'>
                         Contact number is required
@@ -124,9 +115,8 @@
             </div>
             <div *ngIf='newEmployee==true' class="form-group row">
                 <label class="col-sm-4"></label>
-                
-                <button type="submit" (click)="addEmployee()" class="btn btn-primary col-sm-8" 
-                    [disabled]='form.invalid'>Create a new
+
+                <button type="submit" (click)="addEmployee()" class="btn btn-primary col-sm-8" [disabled]='form.invalid'>Create a new
                     Employee</button>
             </div>
             <div *ngIf='newEmployee==false' class="form-group row">
@@ -142,9 +132,9 @@
                             list</b></a></button>
             </div>
         </form>
-        
+
     </div>
-    <div class="col-md-7 col-sm-7 col-xs-7 col-sm-offset-1 col-md-offset-1" style="margin-top: 2em;">
+    <div class="col-md-7 col-xs-12" style="margin-top: 2em;">
         <h5 class='txt-center'>Click the floor to set the position of employee</h5>
         <canvas (click)="drawMarker($event)" id='myCanvas' style="border: 1px solid #d3d3d3">
         </canvas>

@@ -1,6 +1,13 @@
-.navbar-color{
+.navbar-color {
     background-color: #5DA062;
 }
-.nav-link{
-    color:white;
+
+.nav-link {
+    color: white;
+}
+
+.fa-bars {
+    background: beige;
+    padding: 5px;
+    border-radius: 4px;
 }

@@ -1,26 +1,33 @@
-<nav class="navbar navbar-expand-sm navbar-color text-white">
+<nav class="navbar navbar-expand-md navbar-color text-white">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
     <div class="container">
         <a class="navbar-brand text-white" href="#">OfficeSpace</a>
-        <div class="navbar-nav mr-auto">
-            <a class="nav-link nav-item active" routerLink="/home">Search Employees</a>
-            <a class="nav-link" [routerLink]="['/employees','Islamabad']">Employees List</a>
-            <a class="nav-link" [routerLink]="['/saveEmployee','save']">Create Employee </a>
-            <a class="nav-link" href='#'>About</a>
-            <a class="nav-link" routerLink="/contact">Contact</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Select your
+            <div class="navbar-nav mr-auto">
+                <a class="nav-link nav-item active" routerLink="/home">Search Employees</a>
+                <a class="nav-link" [routerLink]="['/employees','Islamabad']">Employees List</a>
+                <a class="nav-link" [routerLink]="['/saveEmployee','save']">Create Employee </a>
+                <a class="nav-link" href='#'>About</a>
+                <a class="nav-link" routerLink="/contact">Contact</a>
+
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Select your
                     branch</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" [routerLink]='["/employees","Islamabad"]'>Islamabad</a>
-                    <a class="dropdown-item" [routerLink]='["/employees","Lahore"]'>Lahore</a>
-                    <a class="dropdown-item" [routerLink]='["/employees","Karachi"]'>Karachi</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]='["/employees","Islamabad"]'>Islamabad</a>
+                        <a class="dropdown-item" [routerLink]='["/employees","Lahore"]'>Lahore</a>
+                        <a class="dropdown-item" [routerLink]='["/employees","Karachi"]'>Karachi</a>
+                    </div>
                 </div>
+                <a class="nav-link" routerLink='/login' *ngIf='!authService.isLoggedIn'>Log In</a>
+                <a class="nav-link" (click)='logOut()' routerLink='/login' *ngIf='authService.isLoggedIn'>Log Out</a>
+                <a class="nav-link" *ngIf='!authService.isLoggedIn' routerLink='/register'>Register</a>
             </div>
-            <a class="nav-link" routerLink='/login' *ngIf='!authService.isLoggedIn'>Log In</a>
-            <a class="nav-link" (click)='logOut()' routerLink='/login' *ngIf='authService.isLoggedIn'>Log Out</a>
-            <a class="nav-link" *ngIf='!authService.isLoggedIn' routerLink='/register'>Register</a>
         </div>
     </div>
+
 </nav>
 <router-outlet></router-outlet>
