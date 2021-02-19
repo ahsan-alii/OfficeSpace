@@ -1,11 +1,11 @@
 <div class="container">
     <h3>Employees Directory</h3>
-    <div class='row' style="margin-bottom: 10px; margin-left: 5px;">
+    <div style="margin-bottom: 10px; margin-left: 5px;">
         <button class="btn  btn-sm btn-outline-danger" (click)="Hide()">Hide Emails</button> &nbsp;&nbsp;&nbsp;
         <button class="btn btn-sm btn-outline-success" (click)="Show()">Show Email</button> &nbsp;&nbsp;&nbsp;
         <button class="btn btn-outline-secondary" (click)="listView()">List View (All Employees)</button> &nbsp;&nbsp;&nbsp;
         <button class="btn btn-outline-primary" (click)="cardView()">Card View</button> &nbsp;&nbsp;&nbsp;
-        <p *ngIf='showTable'>Search for Employees: </p>
+        <p *ngIf='showTable' style="margin-left: 10px">Search for Employees: </p>
         <input *ngIf='showTable' [(ngModel)]='inputValue' (keyup)='filter()' type='text' class='form-control' style="width:200px; margin-left: 10px">
     </div>
     <h5 *ngIf='!showTable'>Branch: {{selectedbranch}}</h5>

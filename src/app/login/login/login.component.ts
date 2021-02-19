@@ -16,37 +16,36 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService
-  ) { 
-    if(authService.isLoggedIn==true)
-    {
+  ) {
+    if (authService.isLoggedIn == true) {
       this.router.navigate(['/employees', 'Islamabad'])
     }
   }
 
   ngOnInit() {
-    console.log("Authservice is: ",this.authService)
+    console.log("Authservice is: ", this.authService)
   }
   loginUser() {
     PNotify.defaults.delay = 2000;
-      this.authService.loginUser(this.user).subscribe(response => {
-        console.log('Response after trying to login: ', response)
+    this.authService.loginUser(this.user).subscribe(response => {
+      console.log('Response after trying to login: ', response)
 
-        PNotify.success({
-          title: 'Logged in...',
-          text: 'Redirecting to employees'
-        })
-        this.router.navigate(['/employees', 'Islamabad'])
-        console.log('Type of response received: ', typeof response)
-      }, error => {
-        if (error)
-          console.log('Got an error: ', error.error)
-        PNotify.error({
-          title: 'Error',
-          text: 'Invalid email or password'
+      PNotify.success({
+        title: 'Logged in...',
+        text: 'Redirecting to employees'
+      })
+      this.router.navigate(['/employees', 'Islamabad'])
+      console.log('Type of response received: ', typeof response)
+    }, error => {
+      if (error)
+        console.log('Got an error: ', error.error)
+      PNotify.error({
+        title: 'Error',
+        text: 'Invalid email or password'
 
-        })
+      })
 
-      });
+    });
 
   }
 

@@ -33,9 +33,15 @@ export class EmployeesComponent implements OnInit {
         let branch = this.route.snapshot.params['branch'];
         this.selectedbranch = branch
         console.log('branch: ', this.selectedbranch)
-        this.data.getEmployees().subscribe((data: Employee[]) => {
-          //   console.log('Data: ', data);
-          this.ReceivedData = data;
+        this.data.getEmployees().subscribe((data: any) => {
+          console.log('Response of AllEmployeeGet: ', data);
+          this.ReceivedData = data.body;
+          console.log('Headers: ', data.headers);
+          let decodedPagination = data.headers.get('X-Pagination');
+          console.log('Response of headers pagination: ', data.headers.get('X-Pagination') as string);
+          console.log('Decoded pagination: ', decodedPagination);
+          // console.log('Response of headers currentCity: ', data.headers.get('CurrentCity'));
+          // console.log('Response of headers Date: ', data.headers.get('Date'));
           this.config.totalItems = data.length;
         });
       }
@@ -67,7 +73,7 @@ export class EmployeesComponent implements OnInit {
     let inputValueUpperCased = this.inputValue.toUpperCase();
     console.log(this.inputValue);
     let data = document.getElementsByTagName('tr');
-     console.log('Data is: ', data);
+    console.log('Data is: ', data);
     // console.log('length of data: ', data.length)
     // console.log('Data Text Content: ', data[2].textContent)
     for (let i = 1; i < data.length; i++) {

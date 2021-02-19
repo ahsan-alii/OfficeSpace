@@ -30,7 +30,7 @@ employeeRoute.route('/login').post((request, response) => {
                 if (user.password !== result.password)
                     return response.status(401).send('Invalid password');
                 else {
-                    console.log('User credential matched')
+
                     return response.status(200).send(true);
 
                 }
@@ -99,22 +99,56 @@ employeeRoute.route('/Employees/get').post(function(req, res) {
     /////////////////GETTING THE LIST OF ALL EMPLOYEES/////////////////
 employeeRoute.get('/Employees/', function(req, res) {
     let employees = [];
+    // res.writeHead(200, {
+    //     'Pagination': 'someInformation'
+    // })
+    // console.log('response going to front-end: ', res);
     Employees.find({}, function(err, results) {
 
         if (err) {
             console.log(err);
         } else {
+
             employees = results;
-            res.json(employees);
+            // res.set({
+            //         'paginationInfo': 'someInformation'
+            //     })
+            // res.setHeader('Access-Control-Allow-Origin', '*');
+            // res.setHeader('Access-Control-Allow-Headers', 'setHeader');
+
+            // res.header('Access-Control-Allow-Origin', '*');
+            // res.setHeader('Access-Control-Allow-Origin', '*');
+            let paginatio = 'blablabla'
+            const currentCity = 'Qatar';
+
+            // res.header('Access-Control-Allow-Headers', 'pagination');
+            // res.header('branch', 'doha');
+            // res.header('Access-Control-Expose-Headers', 'branch');
+            // res.header('Access-Control-Expose-Headers', 'pagination,CurrentCity');
+            // res.header('pagination', paginatio);
+            // pagination = {
+            //     'pageSize': 25,
+            //     'someInformation': 'blablabla...'
+            // }
+            // res.header('Access-Control-Expose-Headers', 'X-Pagination');
+            // res.setHeader('X-Pagination', JSON.stringify(pagination));
+
+            // res.header('Access-Control-Expose-Headers', 'CurrentCity');
+            // res.header('X-Pagination', pagination);
+
+            // console.log('response going to front-end: ', res);
+            res.json(employees)
             date = new Date()
             console.log('Employees Fetched: ', moment().format('LTS'));
+            console.log('User credential matched')
+
         }
     })
 })
 
 
 
-///////////////////////////Get the Ids of employees for iteration/////////////
+/////////////////////////// Get the Ids of employees for iteration /////////////
 
 employeeRoute.route('/Employees/ids').get(function(request, response) {
     console.log('function called')
