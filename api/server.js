@@ -18,12 +18,15 @@ mongoose.connect(DB, { useNewUrlParser: true }, (err, response) => {
         console.log('Connected to ' + DB);
     }
 });
-
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/', employeeRoute);
 let port = process.env.PORT || 4000;
+
+app.get('/checkOfficeSpace',(request,response)=>{
+    return response.json({status:'Office server running'});
+})
 //console.log(employeeRoute);
 
 const server = app.listen(port, function () {
